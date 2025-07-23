@@ -228,3 +228,18 @@ target_link_libraries(utf8_fuzz_tests
     ${CMAKE_THREAD_LIBS_INIT}
     ${EXTRA_LIBRARIES}
     $ENV{LIB_FUZZING_ENGINE})
+
+
+monero_add_minimal_executable(mnemonic_fuzz_tests mnemonic.cpp fuzzer.cpp)
+target_link_libraries(mnemonic_fuzz_tests
+  PRIVATE
+    common
+    cncrypto
+    epee
+    ${Boost_PROGRAM_OPTIONS_LIBRARY}
+    ${CMAKE_THREAD_LIBS_INIT}
+    ${EXTRA_LIBRARIES}
+    $ENV{LIB_FUZZING_ENGINE})
+set_property(TARGET mnemonic_fuzz_tests
+  PROPERTY
+    FOLDER "tests")
